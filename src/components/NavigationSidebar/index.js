@@ -7,8 +7,8 @@ const NavigationSidebar = (
     }) => {
     return(
         <>
-            <div className="list-group" >
-                <Link to="/movieRater/home"
+            <div className="list-group ms-2" >
+                <Link to="/movieRatings/home"
                       className={`list-group-item ${active === 'home' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
@@ -19,26 +19,28 @@ const NavigationSidebar = (
                         </div>
                     </div>
                 </Link>
-                <Link to="/movieRater/explore" className={`list-group-item ${active === 'explore' ? 'active' : ''}`}>
+                <Link to="/movieRatings/search"
+                      className={`list-group-item ${active === 'search' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
-                            <i className="fas fa-hashtag"></i>
+                            <i className="fab fa-searchengin"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Explore</div >
+                            <div className="d-none d-xl-block">Search Movies</div >
                         </div>
                     </div>
                 </Link>
-                <a className="list-group-item" href="#">
+                <Link to="/movieRatings/profile"
+                      className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
-                            <i className="fas fa-bell"></i>
+                            <i className="fas fa-user"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Notifications</div >
+                            <div className="d-none d-xl-block">Profile</div >
                         </div>
                     </div>
-                </a>
+                </Link>
             </div>
         </>
     );
