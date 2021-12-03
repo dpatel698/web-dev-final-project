@@ -8,7 +8,7 @@ const NavigationSidebar = (
     return(
         <>
             <div className="list-group ms-2" >
-                <Link to="/movieRatings/home"
+                <Link to={'/movieRatings/home'}
                       className={`list-group-item ${active === 'home' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
@@ -19,7 +19,7 @@ const NavigationSidebar = (
                         </div>
                     </div>
                 </Link>
-                <Link to="/movieRatings/search"
+                <Link to={'/movieRatings/search'}
                       className={`list-group-item ${active === 'search' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
@@ -30,7 +30,7 @@ const NavigationSidebar = (
                         </div>
                     </div>
                 </Link>
-                <Link to="/movieRatings/profile"
+                <Link to={'/movieRatings/profile'}
                       className={`list-group-item ${active === 'profile' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">

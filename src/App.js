@@ -1,7 +1,6 @@
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import {BrowserRouter, Routes, Route} from "react-router-dom"; //Routes isn't working for some reason, the version is wrong
-//import {Routes, Route} from "react-router";
 import React from "react";
 import './vendors/bootstrap/css/bootstrap.min.css'
 import './App.css';
@@ -9,6 +8,7 @@ import HomeScreen from "./components/HomeScreen";
 import profile from "./reducers/data/profile";
 import SearchMovies from "./components/SearchMovies";
 import ProfileScreen from "./components/ProfileScreen";
+import MovieDetails from "./components/MovieDetails";
 
 const reducer = combineReducers({
     profile: profile,
@@ -19,14 +19,13 @@ function App() {
   return (
       <BrowserRouter>
           <Provider store={store}>
-              <Routes>
-                  <Route exact path="/movieRatings/home"  component={HomeScreen}/>
-                  <Route path="/movieRatings/search" component={SearchMovies}/>
-                  <Route path="/movieRatings/profile" component={ProfileScreen}/>
-              </Routes>
-                <div className="App">
-                    <ProfileScreen/>
-                </div>
+              <Route path="/movieRatings/home"  component={HomeScreen}/>
+              <Route path="/movieRatings/search" component={SearchMovies}/>
+              <Route path="/movieRatings/profile" component={ProfileScreen}/>
+              <Route path="/movieRatings/details/:id" component={MovieDetails}/>
+
+              <div className="App">
+              </div>
           </Provider>
       </BrowserRouter>
   );
