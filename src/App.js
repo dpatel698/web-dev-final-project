@@ -6,7 +6,7 @@ import './vendors/bootstrap/css/bootstrap.min.css'
 import './App.css';
 import HomeScreen from "./components/HomeScreen";
 import profile from "./reducers/data/profile";
-import SearchMovies from "./components/SearchMovies";
+import SearchScreen from "./components/SearchScreen";
 import ProfileScreen from "./components/ProfileScreen";
 import MovieDetails from "./components/MovieDetails";
 
@@ -20,7 +20,8 @@ function App() {
       <BrowserRouter>
           <Provider store={store}>
               <Route path="/movieRatings/home"  component={HomeScreen}/>
-              <Route path="/movieRatings/search" component={SearchMovies}/>
+              <Route path="/movieRatings/search" component={SearchScreen}/>
+              <Route path="/movieRatings/:searchTerm" component={SearchScreen}/>
               <Route path="/movieRatings/profile" component={ProfileScreen}/>
               <Route path="/movieRatings/details/:id" component={MovieDetails}/>
 

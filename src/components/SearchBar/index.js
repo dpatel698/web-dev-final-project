@@ -1,19 +1,27 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 
 
 const SearchBar = () => {
-    const [movies, setMovies] = useState([])
-    const findMovies = () =>
-        fetch('https://www.omdbapi.com/?s=batman&apikey=c564e558')
+    const params = useParams();
+    const history = useHistory()
+    const movieTitle = params.searchTerm || 'batman'
+    const [searchTerm, setSearchTerm] = useState(movieTitle);
+    const [movies, setMovies] = useState([]);
+    const findMovies = () => {
+        history.push(searchTerm)
+        fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=c564e558`)
             .then(res => res.json())
             .then(results => setMovies(results.Search))
+    };
     useEffect(findMovies, []);
     return(
         <>
-            <div className="row mt-2">
-                Search Bar goes Here
-            </div>
+            <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
+            <button onClick={findMovies}>
+                Search
+            </button>
+            {JSON.stringify(params)}
             <br/>
             <ul>
                 {movies.map(movie =>
