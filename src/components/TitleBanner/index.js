@@ -6,9 +6,9 @@ const Banner = () => {
         <>
             <div className="row mt-2">
                 <div className="col-4 ">
-                    <img src='../../public/images/movieTicket.png'
+                    <img src='../public/images/movieTicket.png'
                         className="rounded"
-                    alt="picture goes here"/>
+                    alt="broken link"/>
                 </div>
                 <div className="col-8 ">
                     <h1>Movie Ratings</h1>

@@ -5,7 +5,7 @@ import {Link, useHistory, useParams} from "react-router-dom";
 const SearchBar = () => {
     const params = useParams();
     const history = useHistory()
-    const movieTitle = params.searchTerm || 'batman'
+    const movieTitle = params.searchTerm || 'search'
     const [searchTerm, setSearchTerm] = useState(movieTitle);
     const [movies, setMovies] = useState([]);
     const findMovies = () => {
@@ -14,6 +14,7 @@ const SearchBar = () => {
             .then(res => res.json())
             .then(results => setMovies(results.Search))
     };
+
     useEffect(findMovies, []);
     return(
         <>
@@ -23,16 +24,18 @@ const SearchBar = () => {
             </button>
             {JSON.stringify(params)}
             <br/>
-            <ul>
+            <div>
                 {movies.map(movie =>
-                    <li key={movie.imdbID} className="mt-2">
+                    <ul key={movie.imdbID} className="mt-2">
                         <Link to={`/movieRatings/details/${movie.imdbID}`}>
-                            <img src={movie.Poster} height={50}/>
-                            {movie.Title}
+                            <ul>
+                                <img className="me-2" src={movie.Poster} height={75} />
+                                {movie.Title}
+                            </ul>
                         </Link>
-                    </li>
+                    </ul>
                 )}
-            </ul>
+            </div>
         </>
     );
 }

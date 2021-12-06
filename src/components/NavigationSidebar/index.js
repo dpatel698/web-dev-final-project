@@ -19,7 +19,7 @@ const NavigationSidebar = (
                         </div>
                     </div>
                 </Link>
-                <Link to={'/movieRatings/search'}
+                <Link to={'/movieRatings/search/term'}
                       className={`list-group-item ${active === 'search' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">

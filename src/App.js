@@ -8,7 +8,7 @@ import HomeScreen from "./components/HomeScreen";
 import profile from "./reducers/data/profile";
 import SearchScreen from "./components/SearchScreen";
 import ProfileScreen from "./components/ProfileScreen";
-import MovieDetails from "./components/MovieDetails";
+import DetailsScreen from "./components/DetailsScreen";
 
 const reducer = combineReducers({
     profile: profile,
@@ -19,11 +19,11 @@ function App() {
   return (
       <BrowserRouter>
           <Provider store={store}>
-              <Route path="/movieRatings/home"  component={HomeScreen}/>
-              <Route path="/movieRatings/search" component={SearchScreen}/>
-              <Route path="/movieRatings/:searchTerm" component={SearchScreen}/>
+              <Route path="/movieRatings/home"  component={HomeScreen} exact={true}/>
+              <Route path="/movieRatings/search/term" component={SearchScreen}/>
+              <Route path="/movieRatings/search/:searchTerm" component={SearchScreen}/>
               <Route path="/movieRatings/profile" component={ProfileScreen}/>
-              <Route path="/movieRatings/details/:id" component={MovieDetails}/>
+              <Route path="/movieRatings/details/:id" component={DetailsScreen}/>
 
               <div className="App">
               </div>

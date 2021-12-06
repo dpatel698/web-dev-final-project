@@ -15,7 +15,7 @@ const MovieDetails = () => {
             <h1>Details</h1>
             <img src={movieDetails.Poster} height={100}/>
             <br/>
-            <h2>{movieDetails.Title}({movieDetails.Year}){movieDetails.Rated}</h2>
+            <h2>{movieDetails.Title} ({movieDetails.Year}) {movieDetails.Rated}</h2>
             Directed by: {movieDetails.Director}
             <hr/>
             <p>{movieDetails.Plot}</p>

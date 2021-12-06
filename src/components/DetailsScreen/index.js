@@ -3,7 +3,7 @@ import NavigationSidebar from "../NavigationSidebar";
 import MovieDetails from "../MovieDetails";
 
 
-const HomeScreen = () => {
+const DetailsScreen = () => {
     return(
         <div className="row mt-2">
             <div className="col-2 col-md-2 col-lg-1 col-xl-2">
@@ -19,4 +19,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen;
+export default DetailsScreen;
