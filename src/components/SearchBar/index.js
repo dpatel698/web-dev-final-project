@@ -18,23 +18,36 @@ const SearchBar = () => {
     useEffect(findMovies, []);
     return(
         <>
-            <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
-            <button onClick={findMovies}>
-                Search
-            </button>
-            {JSON.stringify(params)}
+            <div className="input-group">
+                <div className="form-group">
+                    <input className="form-control" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
+                </div>
+                <button type="button" className="btn btn-primary" onClick={findMovies}>
+                    <i className="fas fa-search"></i>
+                </button>
+            </div>
+            {/*{JSON.stringify(params)}*/}
+            {/*todo is above required?*/}
             <br/>
-            <div>
+            <div className="latest_movies_container">
+            <div className="latest_movies_content">
+
                 {movies.map(movie =>
-                    <ul key={movie.imdbID} className="mt-2">
+                    <div className="latest_movies">
+                <div>
                         <Link to={`/movieRatings/details/${movie.imdbID}`}>
-                            <ul>
-                                <img className="me-2" src={movie.Poster} height={75} />
+                            <div>
+                                <img className="photo" src={movie.Poster} height={75} />
+                                <div className="caption">
                                 {movie.Title}
-                            </ul>
+                                </div>
+                            </div>
                         </Link>
-                    </ul>
+                </div>
+                    </div>
                 )}
+
+            </div>
             </div>
         </>
     );

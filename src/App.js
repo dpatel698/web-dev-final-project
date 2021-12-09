@@ -1,9 +1,10 @@
 import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
-import {BrowserRouter, Route, Routes} from "react-router-dom"; //Routes isn't working for some reason, the version is wrong
+import {BrowserRouter, Route, Link, Routes} from "react-router-dom"; //Routes isn't working for some reason, the version is wrong
 import React from "react";
 import './vendors/bootstrap/css/bootstrap.min.css'
 import './App.css';
+import './overallStyle.css';
 import HomeScreen from "./components/HomeScreen";
 import profile from "./reducers/data/profile";
 import SearchScreen from "./components/SearchScreen";
@@ -13,6 +14,7 @@ import Login from "./components/Login/login";
 import Register from "./components/Login/register";
 import Profile from "./components/Login/profile";
 
+
 const reducer = combineReducers({
     profile: profile,
 })
@@ -20,9 +22,19 @@ const store = createStore(reducer);
 
 function App() {
   return (
+
       <BrowserRouter>
+          <div className="container-fluid">
+              <div className="top_header">
+                  <h2 className="text-white">MovieRatings</h2>
+                  <h5 className="text-white">Movie reviews & ratings</h5>
+              </div>
+
+
+
           <Provider store={store}>
               <Routes>
+
                   <Route path="/"  element={<HomeScreen/>} exact={true}/>
                   <Route path="/movieRatings/search" element={<SearchScreen/>}/>
                   <Route path="/:searchTerm" element={<SearchScreen/>}/>
@@ -35,6 +47,7 @@ function App() {
               <div className="App">
               </div>
           </Provider>
+          </div>
       </BrowserRouter>
   );
 }

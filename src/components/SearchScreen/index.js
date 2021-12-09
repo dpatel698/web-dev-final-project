@@ -10,12 +10,12 @@ const SearchMovies = () => {
                 <div className="col-2 col-md-2 col-lg-1 col-xl-2">
                     <NavigationSidebar active="search"/>
                 </div>
-                <div className="col-6"
-                     style={{"position": "relative"}}>
+                <div className="col-10 "
+                      style={{"position": "relative"}}>
                     <SearchBar/>
                 </div>
-                <div className="col-4">
-                </div>
+                {/*<div className="col-4">*/}
+                {/*</div>*/}
             </div>
         </>
     )

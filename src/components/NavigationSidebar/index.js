@@ -7,7 +7,7 @@ const NavigationSidebar = (
     }) => {
     return(
         <>
-            <div className="list-group ms-2" >
+            <div className="sidebar" >
                 <Link to={'/'}
                       className={`list-group-item ${active === 'home' ? 'active' : ''}`}>
                     <div className="row">
