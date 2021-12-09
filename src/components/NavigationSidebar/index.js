@@ -8,7 +8,7 @@ const NavigationSidebar = (
     return(
         <>
             <div className="list-group ms-2" >
-                <Link to={'/movieRatings/home'}
+                <Link to={'/'}
                       className={`list-group-item ${active === 'home' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
@@ -19,7 +19,7 @@ const NavigationSidebar = (
                         </div>
                     </div>
                 </Link>
-                <Link to={'/movieRatings/search/term'}
+                <Link to={'/movieRatings/search'}
                       className={`list-group-item ${active === 'search' ? 'active' : ''}`}>
                     <div className="row">
                         <div className="col-2">
@@ -27,6 +27,28 @@ const NavigationSidebar = (
                         </div>
                         <div className="col-10">
                             <div className="d-none d-xl-block">Search Movies</div >
+                        </div>
+                    </div>
+                </Link>
+                <Link to={'/movieRatings/register'}
+                      className={`list-group-item ${active === 'register' ? 'active' : ''}`}>
+                    <div className="row">
+                        <div className="col-2">
+                            <i className="fas fa-user"></i>
+                        </div>
+                        <div className="col-10">
+                            <div className="d-none d-xl-block">Register</div >
+                        </div>
+                    </div>
+                </Link>
+                <Link to={'/movieRatings/login'}
+                      className={`list-group-item ${active === 'login' ? 'active' : ''}`}>
+                    <div className="row">
+                        <div className="col-2">
+                            <i className="fas fa-user"></i>
+                        </div>
+                        <div className="col-10">
+                            <div className="d-none d-xl-block">Login</div >
                         </div>
                     </div>
                 </Link>

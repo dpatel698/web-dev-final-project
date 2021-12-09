@@ -1,7 +1,6 @@
 import React from "react";
 import NavigationSidebar from "../NavigationSidebar";
-import Banner from "../TitleBanner";
-import NewReleases from "../NewReleases";
+
 
 
 const ProfileScreen = () => {
