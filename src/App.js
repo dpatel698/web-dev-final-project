@@ -8,7 +8,6 @@ import './overallStyle.css';
 import HomeScreen from "./components/HomeScreen";
 import profile from "./reducers/data/profile";
 import SearchScreen from "./components/SearchScreen";
-import ProfileScreen from "./components/ProfileScreen";
 import DetailsScreen from "./components/DetailsScreen";
 import Login from "./components/Login/login";
 import Register from "./components/Login/register";

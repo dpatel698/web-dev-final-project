@@ -4,7 +4,7 @@ import {API_URL} from "../../consts";
 import NavigationSidebar from "../NavigationSidebar";
 
 const Register = () => {
-    const [user, setUser] = useState({username: 'alice', password: 'alice123'});
+    const [user, setUser] = useState({username: 'username', password: 'password'});
     const navigate = useNavigate();
     const register = () => { //should have it in a service javasscript file
         fetch(`${API_URL}/register`, {
@@ -37,7 +37,7 @@ const Register = () => {
                                         className="img-fluid" alt="Phone image"/>
                                 </div>
                                 <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                                    <form>
+                                    <div>
                                         <div className="form-outline mb-4">
                                             <h1>Register</h1>
                                             <input id="form1Example13"
@@ -76,7 +76,7 @@ const Register = () => {
                                         </div>
 
 
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

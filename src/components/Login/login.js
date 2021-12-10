@@ -18,6 +18,9 @@ const Login = () => {
             navigate('/profile')
         });
     }
+
+
+
     return(
         <div className="row mt-2">
 
@@ -35,7 +38,7 @@ const Login = () => {
                                         className="img-fluid" alt="Phone image"/>
                                 </div>
                                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                                        <form>
+                                        <div>
                                             <div className="form-outline mb-4">
                                                 <input id="form1Example13"
                                                        placeholder="User Name"
@@ -76,7 +79,7 @@ const Login = () => {
                                             <button className="btn btn-primary btn-lg btn-block twitter-color" role = "button">
                                                 <i className="fab fa-twitter me-2"></i>Continue with Twitter
                                             </button>
-                                        </form>
+                                        </div>
                                     </div>
                     </div>
                 </div>

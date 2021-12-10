@@ -21,6 +21,20 @@ const Profile = () => {
             credentials: 'include'
         }).then(res => navigate('/'));
     }
+
+    const updateFavoriteMovie = () => {
+        fetch(`${API_URL}/users`, {
+            method: 'PUT',
+            body: JSON.stringify(user),
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(
+        );
+    };
+
+
     useEffect(getProfile, [navigate]);
     return(
         <div className="row mt-2">
@@ -36,6 +50,21 @@ const Profile = () => {
                         onChange={(e) => setUser({...user, username: e.target.value})}
                         placeholder="username"
                         className="form-control"/>
+                    <div className="form-outline mb-4">
+                        <h1>Favorite Movie</h1>
+                        <input id="form1Example13"
+                               value={user.favoriteMovie}
+                               onChange={(e) => setUser({...user, favoriteMovie: e.target.value})}
+                               placeholder="Avengers"
+                               className="form-control"/>
+                    </div>
+                    <button
+                        className="btn btn-primary"
+                        onClick={updateFavoriteMovie}>
+                        Save Movie
+                    </button>
+                    {JSON.stringify(user)}
+                    <br/>
                     <button
                         onClick={logout}
                         className="btn btn-danger">
