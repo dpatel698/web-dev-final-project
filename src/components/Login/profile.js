@@ -34,6 +34,16 @@ const Profile = () => {
         );
     };
 
+    const searchProfile = () => {
+        fetch(`${API_URL}/users/name/${user.username}`)
+            .then(res => res.json())
+            .then(resJson => {
+                if(resJson["found"]){
+                    setUser(resJson["profile"]);
+                }
+            });
+    };
+
 
     useEffect(getProfile, [navigate]);
     return(
@@ -50,6 +60,11 @@ const Profile = () => {
                         onChange={(e) => setUser({...user, username: e.target.value})}
                         placeholder="username"
                         className="form-control"/>
+                    <button
+                        className="btn btn-primary"
+                        onClick={searchProfile}>
+                        Search Profile
+                    </button>
                     <div className="form-outline mb-4">
                         <h1>Favorite Movie</h1>
                         <input id="form1Example13"
