@@ -2,10 +2,12 @@ import React, {useEffect, useState} from "react";
 import {API_URL} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import NavigationSidebar from "../NavigationSidebar";
+import {useDispatch} from "react-redux";
 
 const Profile = () => {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const getProfile = () => {
         fetch(`${API_URL}/profile`, {
             method: 'POST',
@@ -13,13 +15,17 @@ const Profile = () => {
         }).then(res => res.json())
             .then(user => {
                 setUser(user);
+                dispatch({type: "update-profile", "profile": user})
             }).catch(e => navigate('/login'));
     }
     const logout = () => {
         fetch(`${API_URL}/logout`, {
             method: 'POST',
             credentials: 'include'
-        }).then(res => navigate('/'));
+        }).then(res => {
+            dispatch({type: "profile-logout"})
+            navigate('/')
+        });
     }
 
     const updateFavoriteMovie = () => {
@@ -38,7 +44,7 @@ const Profile = () => {
         fetch(`${API_URL}/users/name/${user.username}`)
             .then(res => res.json())
             .then(resJson => {
-                if(resJson["found"]){
+                if (resJson["found"]) {
                     setUser(resJson["profile"]);
                 }
             });
@@ -46,7 +52,7 @@ const Profile = () => {
 
 
     useEffect(getProfile, [navigate]);
-    return(
+    return (
         <div className="row mt-2">
             <div className="col-2 col-md-2 col-lg-1 col-xl-2">
                 <NavigationSidebar active="profile"/>
