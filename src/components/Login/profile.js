@@ -3,10 +3,28 @@ import {API_URL} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import NavigationSidebar from "../NavigationSidebar";
 import {useDispatch} from "react-redux";
+import AdminProfileScreen from "../AdminProfileScreen"
+import profile from "../../reducers/data/profile";
 
 const Profile = () => {
 
     const [user, setUser] = useState({});
+    const [localUser, setLocalUser] = useState({
+    "profile":
+        {
+            "_id":"",
+            "username":"",
+            "password":"",
+            "email":"",
+            "firstName":"",
+            "lastName":"",
+            "favoriteMovie":"",
+            "following":[],"":[],
+            "userLevel":"",
+            "favoriteGenre":""
+        },
+        "found":true
+    });
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const getProfile = () => {
@@ -16,8 +34,21 @@ const Profile = () => {
         }).then(res => res.json())
             .then(user => {
                 setUser(user);
+                console.log(user)
                 dispatch({type: "update-profile", "profile": user})
-            }).catch(e => navigate('/login'));
+            }).then(refreshProfile)
+            .catch(e => navigate('/login'));
+    }
+
+    const refreshProfile = () => {
+        fetch(`${API_URL}/users/name/${user.username}`)
+            .then(res => res.json())
+            .then(resJson => {
+                if (resJson["found"]) {
+                    setLocalUser(resJson);
+                    console.log(localUser);
+                }
+            });
     }
 
     const logout = () => {
@@ -65,7 +96,14 @@ const Profile = () => {
             });
     };
 
+    const renderAdmin = () => {
+        if (localUser.profile.userLevel) {
+            return <AdminProfileScreen/>;
+        }
+    }
+
     useEffect(getProfile, [navigate]);
+    useEffect(refreshProfile, [navigate]);
     return (
         <div className="row mt-2">
             <div className="col-2 col-md-2 col-lg-1 col-xl-2">
@@ -74,7 +112,7 @@ const Profile = () => {
             <div className="col-8"
                  style={{"position": "relative"}}>
                 <div>
-                    <h1>Profile</h1>
+                    <h1>Search Profiles</h1>
                     <input
                         value={user.username}
                         onChange={(e) => setUser({...user, username: e.target.value})}
@@ -85,8 +123,12 @@ const Profile = () => {
                         onClick={searchProfile}>
                         Search Profile
                     </button>
+                    <div>
+                        <h1>Username: {`${user.username}`}</h1>
+                    </div>
                     <div className="form-outline mb-4">
-                        <h1>Favorite Genre</h1>
+                        <h1>Favorite Genre: {`${localUser.profile.favoriteGenre}`}</h1>
+
                         <input id="favoriteGenre"
                                value={user.favoriteGenre}
                                onChange={(e) => setUser({...user, favoriteGenre: e.target.value})}
@@ -99,7 +141,7 @@ const Profile = () => {
                         Save Genre
                     </button>
                     <div className="form-outline mb-4">
-                        <h1>Favorite Movie</h1>
+                        <h1>Favorite Movie: {`${localUser.profile.favoriteMovie}`}</h1>
                         <input id="favoriteMovie"
                                value={user.favoriteMovie}
                                onChange={(e) => setUser({...user, favoriteMovie: e.target.value})}
@@ -111,13 +153,20 @@ const Profile = () => {
                         onClick={updateFavoriteMovie}>
                         Save Movie
                     </button>
-                    {JSON.stringify(user)}
-                    <br/>
+                    <br/><br/>
+                    <button
+                        className="btn btn-primary"
+                        onClick={refreshProfile}>
+                        Refresh Profile
+                    </button>
+                    <br/><br/>
                     <button
                         onClick={logout}
                         className="btn btn-danger">
                         Logout
                     </button>
+                    <hr/>
+                    {renderAdmin()}
                 </div>
             </div>
             <div className="col-2">
