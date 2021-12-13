@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {API_URL} from "../../consts";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import NavigationSidebar from "../NavigationSidebar";
 import {useDispatch} from "react-redux";
 import AdminProfileScreen from "../AdminProfileScreen"
@@ -61,7 +61,17 @@ const Profile = () => {
         });
     }
 
+    const [movie, setMovie] = useState({
+            "Title":"",
+            "Year":"",
+            "imdbID":"",
+            "Type":"",
+            "Poster":""}
+
+        );
+
     const updateFavoriteMovie = () => {
+        user.favoriteMovie = movie.Title;
         fetch(`${API_URL}/users2`, {
             method: 'PUT',
             body: JSON.stringify(user),
@@ -72,7 +82,6 @@ const Profile = () => {
         }).then(
         );
     };
-
 
     const updateFavoriteGenre = () => {
         fetch(`${API_URL}/users2`, {
@@ -100,6 +109,18 @@ const Profile = () => {
         if (localUser.profile.userLevel) {
             return <AdminProfileScreen/>;
         }
+    }
+
+    const params = useParams();
+    const movieTitle = params.searchTerm || 'batman'
+    const [searchTerm, setSearchTerm] = useState(movieTitle);
+    const [movies, setMovies] = useState([]);
+
+    const findMoviesProfile = () =>
+    {
+        fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=c564e558`)
+            .then(res => res.json())
+            .then(results => setMovies(results.Search))
     }
 
     useEffect(getProfile, [navigate]);
@@ -142,12 +163,27 @@ const Profile = () => {
                     </button>
                     <div className="form-outline mb-4">
                         <h1>Favorite Movie: {`${localUser.profile.favoriteMovie}`}</h1>
-                        <input id="favoriteMovie"
-                               value={user.favoriteMovie}
-                               onChange={(e) => setUser({...user, favoriteMovie: e.target.value})}
-                               placeholder="Avengers"
-                               className="form-control"/>
                     </div>
+
+                    <input onChange={(e) =>
+                        setSearchTerm(e.target.value)} value={searchTerm}/>
+                    <button onClick={findMoviesProfile}>
+                        Search
+                    </button>
+                    <ul>
+                        {
+                            movies.map(movie =>
+                                <li key={movie.imdbID}>
+                                    {movie.Title}
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={(e) => setMovie({...movie, favoriteGenre: e.target.value})}>
+                                        Select Movie
+                                    </button>
+                                </li>
+                            )
+                        }
+                    </ul>
                     <button
                         className="btn btn-primary"
                         onClick={updateFavoriteMovie}>

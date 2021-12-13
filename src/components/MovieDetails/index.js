@@ -45,6 +45,7 @@ const MovieDetails = () => {
             <br/>
             <h2>{movieDetails.Title} ({movieDetails.Year}) {movieDetails.Rated}</h2>
             Directed by: {movieDetails.Director}
+            <br/>
             <hr/>
             <p>{movieDetails.Plot}</p>
             <h3>Cast</h3>
