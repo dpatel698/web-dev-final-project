@@ -15,7 +15,7 @@ const Register = () => {
                 'content-type': 'application/json'
             }
         }).then(status =>
-            navigate('/profile')
+            navigate('/movieRatings/profile')
         );
     };
     return(
@@ -65,6 +65,7 @@ const Register = () => {
                                             <span>Passwords don't match</span>
                                         }
                                         </div>
+                                        {JSON.stringify(user)}
                                         <div className="d-flex justify-content-around align-items-center mb-4">
                                             <button
                                                 className="btn btn-primary"

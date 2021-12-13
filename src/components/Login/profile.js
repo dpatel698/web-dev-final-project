@@ -5,6 +5,7 @@ import NavigationSidebar from "../NavigationSidebar";
 import {useDispatch} from "react-redux";
 
 const Profile = () => {
+
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const Profile = () => {
                 dispatch({type: "update-profile", "profile": user})
             }).catch(e => navigate('/login'));
     }
+
     const logout = () => {
         fetch(`${API_URL}/logout`, {
             method: 'POST',
@@ -29,7 +31,20 @@ const Profile = () => {
     }
 
     const updateFavoriteMovie = () => {
-        fetch(`${API_URL}/users`, {
+        fetch(`${API_URL}/users2`, {
+            method: 'PUT',
+            body: JSON.stringify(user),
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(
+        );
+    };
+
+
+    const updateFavoriteGenre = () => {
+        fetch(`${API_URL}/users2`, {
             method: 'PUT',
             body: JSON.stringify(user),
             credentials: 'include',
@@ -49,7 +64,6 @@ const Profile = () => {
                 }
             });
     };
-
 
     useEffect(getProfile, [navigate]);
     return (
@@ -72,8 +86,21 @@ const Profile = () => {
                         Search Profile
                     </button>
                     <div className="form-outline mb-4">
+                        <h1>Favorite Genre</h1>
+                        <input id="favoriteGenre"
+                               value={user.favoriteGenre}
+                               onChange={(e) => setUser({...user, favoriteGenre: e.target.value})}
+                               placeholder="Comedy"
+                               className="form-control"/>
+                    </div>
+                    <button
+                        className="btn btn-primary"
+                        onClick={updateFavoriteGenre}>
+                        Save Genre
+                    </button>
+                    <div className="form-outline mb-4">
                         <h1>Favorite Movie</h1>
-                        <input id="form1Example13"
+                        <input id="favoriteMovie"
                                value={user.favoriteMovie}
                                onChange={(e) => setUser({...user, favoriteMovie: e.target.value})}
                                placeholder="Avengers"

@@ -15,11 +15,9 @@ const Login = () => {
                 'content-type': 'application/json'
             }
         }).then(status => {
-            navigate('/profile')
+            navigate('/movieRatings/profile')
         });
     }
-
-
 
     return(
         <div className="row mt-2">
