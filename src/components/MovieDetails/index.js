@@ -1,12 +1,53 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {API_URL} from "../../consts";
 import Review from "./review";
 
 const selectProfile = (state) => state.profile;
 
 const MovieDetails = () => {
+    const [user, setUser] = useState({});
+    const [localUser, setLocalUser] = useState({
+        "profile":
+            {
+                "_id":"",
+                "username":"",
+                "password":"",
+                "email":"",
+                "firstName":"",
+                "lastName":"",
+                "favoriteMovie":"",
+                "following":[],"":[],
+                "userLevel":"",
+                "favoriteGenre":""
+            },
+        "found":true
+    });
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const getProfile = () => {
+        fetch(`${API_URL}/profile`, {
+            method: 'POST',
+            credentials: 'include'
+        }).then(res => res.json())
+            .then(user => {
+                setUser(user);
+                console.log(user)
+                dispatch({type: "update-profile", "profile": user})
+            }).then(refreshProfile)
+            .catch(e => navigate('/login'));
+    }
+    const refreshProfile = () => {
+        fetch(`${API_URL}/users/name/${user.username}`)
+            .then(res => res.json())
+            .then(resJson => {
+                if (resJson["found"]) {
+                    setLocalUser(resJson);
+                    console.log(localUser);
+                }
+            });
+    }
     const params = useParams();
     const profile = useSelector(selectProfile)
     const [movieDetails, setMovieDetails] = useState({Actors: ''});
@@ -43,6 +84,7 @@ const MovieDetails = () => {
             .then(revs => setLikes(revs.length));
     }
     const refreshData = () =>{
+        getProfile()
         getAllMovieReviews();
         getLikes();
     }
