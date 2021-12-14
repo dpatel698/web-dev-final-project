@@ -83,7 +83,7 @@ const Profile = () => {
         );
     };
 
-    const updateFavoriteGenre = () => {
+    const updateUser = () => {
         fetch(`${API_URL}/users2`, {
             method: 'PUT',
             body: JSON.stringify(user),
@@ -95,15 +95,7 @@ const Profile = () => {
         );
     };
 
-    const searchProfile = () => {
-        fetch(`${API_URL}/users/name/${user.username}`)
-            .then(res => res.json())
-            .then(resJson => {
-                if (resJson["found"]) {
-                    setUser(resJson["profile"]);
-                }
-            });
-    };
+
 
     const renderAdmin = () => {
         if (localUser.profile.userLevel) {
@@ -133,68 +125,118 @@ const Profile = () => {
             <div className="col-8"
                  style={{"position": "relative"}}>
                 <div>
-                    <h1>Search Profiles</h1>
-                    <input
-                        value={user.username}
-                        onChange={(e) => setUser({...user, username: e.target.value})}
-                        placeholder="username"
-                        className="form-control"/>
-                    <button
-                        className="btn btn-primary"
-                        onClick={searchProfile}>
-                        Search Profile
-                    </button>
                     <div>
-                        <h1>Username: {`${user.username}`}</h1>
-                    </div>
-                    <div className="form-outline mb-4">
-                        <h1>Favorite Genre: {`${localUser.profile.favoriteGenre}`}</h1>
-
-                        <input id="favoriteGenre"
-                               value={user.favoriteGenre}
-                               onChange={(e) => setUser({...user, favoriteGenre: e.target.value})}
-                               placeholder="Comedy"
-                               className="form-control"/>
-                    </div>
-                    <button
-                        className="btn btn-primary"
-                        onClick={updateFavoriteGenre}>
-                        Save Genre
-                    </button>
-                    <div className="form-outline mb-4">
-                        <h1>Favorite Movie: {`${localUser.profile.favoriteMovie}`}</h1>
+                        <div className="row mt-2">
+                            <div className="col-10">
+                                <h1>Username: {`${user.username} `}</h1>
+                            </div>
+                            <div className="col-2">
+                                <button
+                                    className="btn btn-success float-end"
+                                    onClick={refreshProfile}>
+                                    Refresh Profile
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <input onChange={(e) =>
-                        setSearchTerm(e.target.value)} value={searchTerm}/>
-                    <button onClick={findMoviesProfile}>
-                        Search
-                    </button>
-                    <ul>
-                        {
-                            movies.map(movie =>
-                                <li key={movie.imdbID}>
-                                    {movie.Title}
+                    <div className="row mt-2">
+                        <div className="col-6">
+                            <h3>Email: {`${localUser.profile.email === undefined ? '' : localUser.profile.email}`}</h3>
+                            <div className="row mt-2">
+                                <div className="col-9">
+                                    <div className="form-outline mb-4">
+                                        <input id="email"
+                                               value={user.email}
+                                               onChange={(e) => setUser({...user, email: e.target.value})}
+                                               placeholder="Enter your Email Address"
+                                               className="form-control"/>
+                                    </div>
+                                </div>
+                                <div className="col-3">
                                     <button
                                         className="btn btn-primary"
-                                        onClick={(e) => setMovie({...movie, favoriteGenre: e.target.value})}>
-                                        Select Movie
+                                        onClick={updateUser}>
+                                        Save Email
                                     </button>
-                                </li>
-                            )
-                        }
-                    </ul>
-                    <button
-                        className="btn btn-primary"
-                        onClick={updateFavoriteMovie}>
-                        Save Movie
-                    </button>
-                    <br/><br/>
-                    <button
-                        className="btn btn-primary"
-                        onClick={refreshProfile}>
-                        Refresh Profile
-                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-6">
+                            <h3>Account Type: {`${localUser.profile.userLevel === undefined ? 'basic' : localUser.profile.userLevel}`}</h3>
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col-6">
+                            <h3>Favorite Movie: {`${localUser.profile.favoriteMovie}`}</h3>
+                            <div className="row mt-2">
+                                <div className="col-9">
+                                    <div className="form-outline mb-4">
+                                        <input id="favoriteMovie"
+                                               value={user.favoriteMovie}
+                                               onChange={(e) =>
+                                                   setSearchTerm(e.target.value)} value={searchTerm}
+                                               placeholder="Favorite Movie"
+                                               className="form-control"/>
+                                    </div>
+                                    <ul className="border mb-2 rounded">
+                                        {
+                                            movies.map(movie =>
+                                                <li key={movie.imdbID}>
+                                                    <div className="row mt-2 mb-2">
+                                                        <div className="col-7">
+                                                            {movie.Title}
+                                                        </div>
+                                                        <div className="col-5">
+                                                            <button
+                                                                className="btn btn-primary"
+                                                                onClick={(e) => setMovie({...movie, favoriteGenre: e.target.value})}>
+                                                                Select Movie
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            )
+                                        }
+                                    </ul>
+                                </div>
+                                <div className="col-3">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={findMoviesProfile}>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                            <button
+                                className="btn btn-primary"
+                                onClick={updateFavoriteMovie}>
+                                Save Movie
+                            </button>
+                        </div>
+                        <div className="col-6">
+                            <h3>Favorite Genre: {`${localUser.profile.favoriteGenre}`}</h3>
+                            <div className="row mt-2">
+                                <div className="col-9">
+                                    <div className="form-outline mb-4">
+                                        <input id="favoriteGenre"
+                                               value={user.favoriteGenre}
+                                               onChange={(e) => setUser({...user, favoriteGenre: e.target.value})}
+                                               placeholder="Comedy"
+                                               className="form-control"/>
+                                    </div>
+                                </div>
+                                <div className="col-3">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={updateUser}>
+                                        Save Genre
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     <br/><br/>
                     <button
                         onClick={logout}
