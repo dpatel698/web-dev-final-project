@@ -8,6 +8,12 @@ const SearchBar = () => {
     const movieTitle = params.searchTerm || 'batman'
     const [searchTerm, setSearchTerm] = useState(movieTitle);
     const [movies, setMovies] = useState([]);
+    const defMovies = () => {
+        navigate(`/search`, {replace: true})
+        fetch(`https://www.omdbapi.com/?s=Avengers&apikey=c564e558`)
+            .then(res => res.json())
+            .then(results => setMovies(results.Search))
+    };
     const findMovies = () => {
         navigate(`/${searchTerm}`, {replace: true})
         fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=c564e558`)
@@ -15,12 +21,12 @@ const SearchBar = () => {
             .then(results => setMovies(results.Search))
     };
 
-    useEffect(findMovies, []);
+    useEffect(defMovies, []);
     return(
         <>
             <div className="input-group">
                 <div className="form-group">
-                    <input className="form-control" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
+                    <input className="form-control" onChange={(e) => setSearchTerm(e.target.value)}/>
                 </div>
                 <button type="button" className="btn btn-primary btn-search" onClick={findMovies}>
                     <i className="fas fa-search"></i>

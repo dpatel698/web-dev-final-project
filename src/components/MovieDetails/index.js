@@ -35,7 +35,9 @@ const MovieDetails = () => {
                 setUser(user);
                 console.log(user)
                 dispatch({type: "update-profile", "profile": user})
-            }).then(refreshProfile)
+            })
+            .catch(e => console.log(e.log))
+            .then(refreshProfile)
     }
     const refreshProfile = () => {
         fetch(`${API_URL}/users/name/${user.username}`)
@@ -45,7 +47,7 @@ const MovieDetails = () => {
                     setLocalUser(resJson);
                     console.log(localUser);
                 }
-            });
+            }).catch(e => console.log(e.log));
     }
     const params = useParams();
     const profile = useSelector(selectProfile)
@@ -53,7 +55,7 @@ const MovieDetails = () => {
     const findMovieDetailsByimdbID = () =>
         fetch(`https://www.omdbapi.com/?i=${params.id}&apikey=c564e558`)
             .then(res => res.json())
-            .then(movie => setMovieDetails(movie));
+            .then(movie => setMovieDetails(movie)).catch(e => console.log(e.log));
     useEffect(findMovieDetailsByimdbID, []);
     let [review, setReview] = useState('');
     const reviewClickHandler = () => {
@@ -69,7 +71,7 @@ const MovieDetails = () => {
                 headers: {
                     'content-type': 'application/json'
                 }
-            }).then(res => res.json())
+            }).then(res => res.json()).catch(e => console.log(e.log))
             refreshData();
         } else {
             navigate('/movieRatings/login')
@@ -79,12 +81,12 @@ const MovieDetails = () => {
     let [allReviews, setAllReviews] = useState([]);
     const getAllMovieReviews = () => {
         fetch(`${API_URL}/movies/reviews/${movieDetails.imdbID}`).then(res => res.json())
-            .then(revs => setAllReviews(revs));
+            .then(revs => setAllReviews(revs)).catch(e => console.log(e.log));
     }
     let [likes, setLikes] = useState(0);
     const getLikes = () => {
         fetch(`${API_URL}/movies/likes/${movieDetails.imdbID}`).then(res => res.json())
-            .then(revs => setLikes(revs.length));
+            .then(revs => setLikes(revs.length)).catch(e => console.log(e.log));
     }
     const refreshData = () => {
         getProfile();
@@ -106,7 +108,7 @@ const MovieDetails = () => {
                 }
             }).then(res => {
                 res.json()
-            })
+            }).catch(e => console.log(e.log))
             refreshData();
         } else {
             navigate('/movieRatings/login')
