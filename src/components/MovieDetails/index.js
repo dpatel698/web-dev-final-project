@@ -36,7 +36,6 @@ const MovieDetails = () => {
                 console.log(user)
                 dispatch({type: "update-profile", "profile": user})
             }).then(refreshProfile)
-            .catch(e => navigate('/login'));
     }
     const refreshProfile = () => {
         fetch(`${API_URL}/users/name/${user.username}`)
