@@ -117,15 +117,15 @@ const MovieDetails = () => {
     return (
         <>
             <h1>Details</h1>
-            <img src={movieDetails.Poster} height={100}/>
+            <img src={movieDetails.Poster} height={300}/>
             <br/>
-            <h2>{movieDetails.Title} ({movieDetails.Year}) {movieDetails.Rated}</h2>
-            Directed by: {movieDetails.Director}
+            <h2 className="h2">{movieDetails.Title} ({movieDetails.Year}) {movieDetails.Rated}</h2>
+            <p className="h4"> Directed by: {movieDetails.Director}</p>
             <br/>
             <hr/>
-            <p>{movieDetails.Plot}</p>
-            <h3>Cast</h3>
-            <ul>
+            <p className="h4">{movieDetails.Plot}</p>
+            <h3 className="h3">Cast</h3>
+            <ul className="h4">
                 {
                     movieDetails.Actors.split(',').map(actor =>
                         <li key={actor}>
@@ -134,27 +134,34 @@ const MovieDetails = () => {
                 }
             </ul>
             <h3>Likes</h3>
-            <div>
+            <div className="h3">
                 {likes}
             </div>
-            <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-dark mt-2">
+            <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-details  btn-dark mt-2">
                 Leave a Like
             </button>
             <div className="form-group">
                 <textarea value={review}
                           onChange={(event) => setReview(event.target.value)}
                           className="form-control" id="reviewTextArea" rows="3"></textarea>
-                <button onClick={reviewClickHandler} id="reviewBtn" type="button" className="btn btn-dark mt-2">
+                <button onClick={reviewClickHandler} id="reviewBtn" type="button" className="btn btn-details btn-dark mt-2">
                     Submit Review
                 </button>
             </div>
-            <h2>Reviews</h2>
+            <h2 className="h2">Reviews</h2>
 
-            <ul className="list-group">
-                {
-                    allReviews.map(review => <Review rev={review}/>)
-                }
-            </ul>
+            {allReviews.map(review =>
+                    <span className="card shadow p-3 bg-white mt-3">
+    <span className="card-body">
+        <p className="black-title h3">
+             {/*<Review rev={review}/>*/}
+            {review.review}
+        </p>
+        <br/>
+        <p className="black-title h3">Written by {review.profileName}</p>
+    </span>
+</span>
+            )}
 
 
         </>
