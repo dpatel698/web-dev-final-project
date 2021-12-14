@@ -37,7 +37,31 @@ const MovieDetails = () => {
         fetch(`${API_URL}/movies/reviews/${movieDetails.imdbID}`).then(res => res.json())
             .then(revs => setAllReviews(revs));
     }
+    let [likes, setLikes] = useState(0);
+    const getLikes = () => {
+        fetch(`${API_URL}/movies/likes/${movieDetails.imdbID}`).then(res => res.json())
+            .then(revs => setLikes(revs.length));
+    }
+    const refreshData = () =>{
+        getAllMovieReviews();
+        getLikes();
+    }
 
+    const likeClickHandler = () => {
+        if (Object.keys(profile).length !== 0) {
+            fetch(`${API_URL}/likes`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    imdbId: movieDetails.imdbID,
+                    profileId: profile._id,
+                    profileName: profile.username
+                }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(res => {res.json()})
+        }
+    }
     return (
         <>
             <h1>Details</h1>
@@ -57,6 +81,16 @@ const MovieDetails = () => {
                         </li>)
                 }
             </ul>
+            <button onClick={refreshData} id="refreshBtn" type="button" className="btn btn-dark mt-2 mb-2">
+                Refresh Info
+            </button>
+            <h3>Likes</h3>
+            <div>
+                  {likes}
+            </div>
+            <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-dark mt-2">
+                Leave a Like
+            </button>
             <div className="form-group">
                 <textarea value={review}
                           onChange={(event) => setReview(event.target.value)}
@@ -66,9 +100,7 @@ const MovieDetails = () => {
                 </button>
             </div>
             <h2>Reviews</h2>
-            <button onClick={getAllMovieReviews} id="reviewBtn" type="button" className="btn btn-dark mt-2 mb-2">
-                Refresh Reviews
-            </button>
+
             <ul className="list-group">
                 {
                     allReviews.map(review => <Review rev={review}/>)
