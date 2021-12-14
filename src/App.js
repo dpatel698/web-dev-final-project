@@ -12,6 +12,8 @@ import DetailsScreen from "./components/DetailsScreen";
 import Login from "./components/Login/login";
 import Register from "./components/Login/register";
 import Profile from "./components/Login/profile";
+import PrivacyPolicyScreen from "./components/PrivacyPolicyScreen";
+import ProfileSearchScreen from "./components/ProfileSearchScreen";
 
 
 const reducer = combineReducers({
@@ -41,6 +43,9 @@ function App() {
                   <Route path="/movieRatings/login" element={<Login/>}/>
                   <Route path="/movieRatings/register" element={<Register/>}/>
                   <Route path="/movieRatings/profile" element={<Profile/>}/>
+                  <Route path="/movieRatings/privacy" element={<PrivacyPolicyScreen/>}/>
+                  <Route path="/movieRatings/searchProfiles" element={<ProfileSearchScreen/>}/>
+
               </Routes>
 
               <div className="App">

@@ -15,7 +15,7 @@ const NavigationSidebar = (
                             <i className="fas fa-home"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block" >Home</div >
+                            <div className="d-none d-xl-block" >Home</div>
                         </div>
                     </div>
                 </Link>
@@ -26,7 +26,18 @@ const NavigationSidebar = (
                             <i className="fab fa-searchengin"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Search Movies</div >
+                            <div className="d-none d-xl-block">Search Movies</div>
+                        </div>
+                    </div>
+                </Link>
+                <Link to={'/movieRatings/searchProfiles'}
+                      className={`list-group-item ${active === 'searchProfiles' ? 'active' : ''}`}>
+                    <div className="row">
+                        <div className="col-2">
+                            <i className="fab fa-searchengin"></i>
+                        </div>
+                        <div className="col-10">
+                            <div className="d-none d-xl-block">Search Profiles</div>
                         </div>
                     </div>
                 </Link>
@@ -37,7 +48,7 @@ const NavigationSidebar = (
                             <i className="fas fa-user"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Register</div >
+                            <div className="d-none d-xl-block">Register</div>
                         </div>
                     </div>
                 </Link>
@@ -48,7 +59,7 @@ const NavigationSidebar = (
                             <i className="fas fa-user"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Login</div >
+                            <div className="d-none d-xl-block">Login</div>
                         </div>
                     </div>
                 </Link>
@@ -59,7 +70,18 @@ const NavigationSidebar = (
                             <i className="fas fa-user"></i>
                         </div>
                         <div className="col-10">
-                            <div className="d-none d-xl-block">Profile</div >
+                            <div className="d-none d-xl-block">Profile</div>
+                        </div>
+                    </div>
+                </Link>
+                <Link to={'/movieRatings/privacy'}
+                      className={`list-group-item ${active === 'privacy' ? 'active' : ''}`}>
+                    <div className="row">
+                        <div className="col-2">
+                            <i className="fas fa-key"></i>
+                        </div>
+                        <div className="col-10">
+                            <div className="d-none d-xl-block">Privacy Policy</div>
                         </div>
                     </div>
                 </Link>
