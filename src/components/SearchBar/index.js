@@ -26,7 +26,7 @@ const SearchBar = () => {
         <>
             <div className="input-group">
                 <div className="form-group">
-                    <input className="form-control" onChange={(e) => setSearchTerm(e.target.value)}/>
+                    <input className="form-control" placeholder="Movie" onChange={(e) => setSearchTerm(e.target.value)}/>
                 </div>
                 <button type="button" className="btn btn-primary btn-search" onClick={findMovies}>
                     <i className="fas fa-search"></i>

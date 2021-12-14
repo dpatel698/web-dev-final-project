@@ -115,7 +115,7 @@ const MovieDetails = () => {
         }
 
     }
-    setTimeout(refreshData, 500);
+
     return (
         <>
             <h1>Details</h1>
@@ -135,11 +135,14 @@ const MovieDetails = () => {
                         </li>)
                 }
             </ul>
+            <button onClick={refreshData} id="reviewBtn" type="button" className="btn btn-details btn-dark mt-2">
+                Refresh Data
+            </button>
             <h3>Likes</h3>
             <div className="h3">
                 {likes}
             </div>
-            <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-details  btn-dark mt-2">
+            <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-details btn-dark mt-2">
                 Leave a Like
             </button>
             <div className="form-group">
