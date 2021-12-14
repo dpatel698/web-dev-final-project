@@ -11,18 +11,18 @@ const MovieDetails = () => {
     const [localUser, setLocalUser] = useState({
         "profile":
             {
-                "_id":"",
-                "username":"",
-                "password":"",
-                "email":"",
-                "firstName":"",
-                "lastName":"",
-                "favoriteMovie":"",
-                "following":[],"":[],
-                "userLevel":"",
-                "favoriteGenre":""
+                "_id": "",
+                "username": "",
+                "password": "",
+                "email": "",
+                "firstName": "",
+                "lastName": "",
+                "favoriteMovie": "",
+                "following": [], "": [],
+                "userLevel": "",
+                "favoriteGenre": ""
             },
-        "found":true
+        "found": true
     });
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -71,7 +71,11 @@ const MovieDetails = () => {
                     'content-type': 'application/json'
                 }
             }).then(res => res.json())
+            refreshData();
+        } else {
+            navigate('/movieRatings/login')
         }
+
     }
     let [allReviews, setAllReviews] = useState([]);
     const getAllMovieReviews = () => {
@@ -83,8 +87,8 @@ const MovieDetails = () => {
         fetch(`${API_URL}/movies/likes/${movieDetails.imdbID}`).then(res => res.json())
             .then(revs => setLikes(revs.length));
     }
-    const refreshData = () =>{
-        getProfile()
+    const refreshData = () => {
+        getProfile();
         getAllMovieReviews();
         getLikes();
     }
@@ -101,9 +105,16 @@ const MovieDetails = () => {
                 headers: {
                     'content-type': 'application/json'
                 }
-            }).then(res => {res.json()})
+            }).then(res => {
+                res.json()
+            })
+            refreshData();
+        } else {
+            navigate('/movieRatings/login')
         }
+
     }
+    setTimeout(refreshData, 500);
     return (
         <>
             <h1>Details</h1>
@@ -123,12 +134,9 @@ const MovieDetails = () => {
                         </li>)
                 }
             </ul>
-            <button onClick={refreshData} id="refreshBtn" type="button" className="btn btn-dark mt-2 mb-2">
-                Refresh Info
-            </button>
             <h3>Likes</h3>
             <div>
-                  {likes}
+                {likes}
             </div>
             <button onClick={likeClickHandler} id="likeBtn" type="button" className="btn btn-dark mt-2">
                 Leave a Like
