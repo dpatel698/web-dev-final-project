@@ -133,7 +133,7 @@ const Profile = () => {
                             </div>
                             <div className="col-2">
                                 <button
-                                    className="btn btn-success float-end"
+                                    className="btn btn-success float-end btn-details"
                                     onClick={refreshProfile}>
                                     Refresh Profile
                                 </button>
@@ -156,7 +156,7 @@ const Profile = () => {
                                 </div>
                                 <div className="col-3">
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary btn-details"
                                         onClick={updateUser}>
                                         Save Email
                                     </button>
@@ -196,7 +196,7 @@ const Profile = () => {
                                                         </div>
                                                         <div className="col-5">
                                                             <button
-                                                                className="btn btn-primary"
+                                                                className="btn btn-primary btn-details"
                                                                 onClick={(e) => setMovie({...movie, favoriteGenre: e.target.value})}>
                                                                 Select Movie
                                                             </button>
@@ -209,14 +209,14 @@ const Profile = () => {
                                 </div>
                                 <div className="col-3">
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary btn-details"
                                         onClick={findMoviesProfile}>
                                         Search
                                     </button>
                                 </div>
                             </div>
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary btn-details"
                                 onClick={updateFavoriteMovie}>
                                 Save Movie
                             </button>
@@ -235,7 +235,7 @@ const Profile = () => {
                                 </div>
                                 <div className="col-3">
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary btn-details"
                                         onClick={updateUser}>
                                         Save Genre
                                     </button>
@@ -247,7 +247,7 @@ const Profile = () => {
                     <br/><br/>
                     <button
                         onClick={logout}
-                        className="btn btn-danger">
+                        className="btn btn-danger btn-details">
                         Logout
                     </button>
                     <hr/>

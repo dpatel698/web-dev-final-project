@@ -50,7 +50,7 @@ const AdminProfileScreen = () => {
         <>
             <div className="row mt-2">
                 <div className="col-6">
-                    <h5>Find a profile to edit</h5>
+                    <h5 className="h3">Find a profile to edit</h5>
                     <input
                         value={targetUser.username}
                         onChange={(e) => setTargetUser({...targetUser, username: e.target.value})}
@@ -58,20 +58,20 @@ const AdminProfileScreen = () => {
                         className="form-control"/>
                     <br/>
                     <button
-                        className="btn btn-primary mb-2"
+                        className="btn btn-primary mb-2 btn-details"
                         onClick={searchProfile}>
                         Search Profile
                     </button>
                 </div>
                 <div className="col-6 mt-2">
-                    <h5>Username to Edit: {`${targetUser.username === undefined ? '' : targetUser.username}`}</h5>
-                    <h5>Current Password: {`${targetUser.password === undefined ? '' : targetUser.username}`}</h5>
+                    <h5 className="h3">Username to Edit: {`${targetUser.username === undefined ? '' : targetUser.username}`}</h5>
+                    <h5 className="h3">Current Password: {`${targetUser.password === undefined ? '' : targetUser.username}`}</h5>
                 </div>
             </div>
             <br/>
             <div className="row mt-2">
                 <div className="col-6">
-                    <h5>New User Type: </h5>
+                    <h5 className="h4">New User Type: </h5>
                     <div className="row mt-2">
                         <div className="col-8">
                             <div className="form-outline mb-4">
@@ -83,7 +83,7 @@ const AdminProfileScreen = () => {
                         </div>
                         <div className="col-4">
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary btn-details"
                                 onClick={updateUser}>
                                 Update Account
                             </button>
@@ -91,7 +91,7 @@ const AdminProfileScreen = () => {
                     </div>
                 </div>
                 <div className="col-6">
-                    <h5>New Password: </h5>
+                    <h5 className="h4">New Password: </h5>
                     <div className="row mt-2">
                         <div className="col-8">
                             <div className="form-outline mb-4">
@@ -103,7 +103,7 @@ const AdminProfileScreen = () => {
                         </div>
                         <div className="col-4">
                             <button
-                                className="btn btn-primary"
+                                className="btn btn-primary btn-details"
                                 onClick={updateUser}>
                                 Update Password
                             </button>

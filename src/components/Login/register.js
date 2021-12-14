@@ -68,12 +68,12 @@ const Register = () => {
                                         {JSON.stringify(user)}
                                         <div className="d-flex justify-content-around align-items-center mb-4">
                                             <button
-                                                className="btn btn-primary"
+                                                className="btn btn-primary btn-searchPage"
                                                 onClick={register}>
                                                 Register
                                             </button>
 
-                                            <Link to="/movieRatings/login">Already a user? Login</Link>
+                                            <h3><Link to="/movieRatings/login">Already a user? Login</Link></h3>
                                         </div>
 
 

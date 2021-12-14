@@ -2,6 +2,7 @@ import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import {BrowserRouter, Route, Link, Routes} from "react-router-dom"; //Routes isn't working for some reason, the version is wrong
 import React from "react";
+
 import './vendors/bootstrap/css/bootstrap.min.css'
 import './App.css';
 import './overallStyle.css';

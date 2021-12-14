@@ -60,11 +60,11 @@ const Login = () => {
                                                     id="form1Example3"
                                                     checked
                                                 />
-                                                <label className="form-check-label" htmlFor="form1Example3"> Remember me </label>
+                                                    <h3><label className="form-check-label" htmlFor="form1Example3"> Remember me </label></h3>
                                             </div>
-                                                <Link to="/movieRatings/register">Forgot password?</Link>
+                                                <h3><Link to="/movieRatings/register">Forgot password?</Link></h3>
                                             </div>
-                                            <button  className="btn btn-primary btn-lg btn-block" onClick={login}>Log in</button>
+                                            <button  className="btn btn-primary btn-lg btn-block " onClick={login}>Log in</button>
                                             <div className="divider d-flex align-items-center my-4">
                                                 <p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                                             </div>

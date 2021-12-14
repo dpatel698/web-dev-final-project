@@ -30,7 +30,7 @@ const ProfileSearchComponent = () => {
                 placeholder="username"
                 className="form-control"/>
             <button
-                className="btn btn-primary"
+                className="btn btn-primary btn-details"
                 onClick={searchProfile}>
                 Search Profile
             </button>

@@ -22,12 +22,10 @@ const SearchBar = () => {
                 <div className="form-group">
                     <input className="form-control" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}/>
                 </div>
-                <button type="button" className="btn btn-primary" onClick={findMovies}>
+                <button type="button" className="btn btn-primary btn-search" onClick={findMovies}>
                     <i className="fas fa-search"></i>
                 </button>
             </div>
-            {/*{JSON.stringify(params)}*/}
-            {/*todo is above required?*/}
             <br/>
             <div className="latest_movies_container">
             <div className="latest_movies_content">
