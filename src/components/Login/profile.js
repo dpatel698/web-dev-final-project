@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {API_URL} from "../../consts";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import NavigationSidebar from "../NavigationSidebar";
 import {useDispatch} from "react-redux";
 import AdminProfileScreen from "../AdminProfileScreen"
@@ -71,6 +71,7 @@ const Profile = () => {
         );
 
     const updateFavoriteMovie = () => {
+        user.favoriteMovieID = movie.imdbID
         user.favoriteMovie = movie.Title;
         fetch(`${API_URL}/users2`, {
             method: 'PUT',
@@ -168,7 +169,13 @@ const Profile = () => {
                     </div>
                     <div className="row mt-2">
                         <div className="col-6">
-                            <h3>Favorite Movie: {`${localUser.profile.favoriteMovie}`}</h3>
+                            <span>
+                                <h3>Favorite Movie:
+                                <Link to={`/movieRatings/details/${localUser.profile.favoriteMovieID}`}>
+                                    {` ${localUser.profile.favoriteMovie}`}
+                                </Link>
+                                    </h3>
+                            </span>
                             <div className="row mt-2">
                                 <div className="col-9">
                                     <div className="form-outline mb-4">
