@@ -5,6 +5,7 @@ import NavigationSidebar from "../NavigationSidebar";
 import {useDispatch} from "react-redux";
 import AdminProfileScreen from "../AdminProfileScreen"
 import profile from "../../reducers/data/profile";
+import PremiumProfileScreen from "../PremiumProfileScreen";
 
 const Profile = () => {
 
@@ -99,10 +100,16 @@ const Profile = () => {
 
 
     const renderAdmin = () => {
-        if (localUser.profile.userLevel) {
+        if (localUser.profile.userLevel === "admin") {
             return <AdminProfileScreen/>;
         }
     }
+
+const renderPremium = () => {
+    if (localUser.profile.userLevel === "premium") {
+        return <PremiumProfileScreen localProfile={localUser}/>;
+    }
+}
 
     const params = useParams();
     const movieTitle = params.searchTerm || 'batman'
@@ -252,6 +259,7 @@ const Profile = () => {
                     </button>
                     <hr/>
                     {renderAdmin()}
+                    {renderPremium()}
                 </div>
             </div>
             <div className="col-2">
